@@ -96,6 +96,9 @@ function fillForm() {
   // 음성 로그
   $('voiceLog').checked = !!c.voiceLog?.enabled;
   $('voiceLogChannel').innerHTML = channelOptions(c.voiceLog?.channelId, 'text');
+  // 메시지 로그
+  $('messageLog').checked = !!c.messageLog?.enabled;
+  $('messageLogChannel').innerHTML = channelOptions(c.messageLog?.channelId, 'text');
   // 환영
   $('welcome').checked = !!c.welcome?.enabled;
   $('welcomeChannel').innerHTML = channelOptions(c.welcome?.channelId, 'text');
@@ -111,6 +114,7 @@ function fillForm() {
 
 function syncSubVisibility() {
   $('voiceLogSub').classList.toggle('show', $('voiceLog').checked);
+  $('messageLogSub').classList.toggle('show', $('messageLog').checked);
   $('welcomeSub').classList.toggle('show', $('welcome').checked);
   $('spamFilterSub').classList.toggle('show', $('spamFilter').checked);
 }
@@ -118,6 +122,7 @@ function syncSubVisibility() {
 function collectForm() {
   return {
     voiceLog: { enabled: $('voiceLog').checked, channelId: $('voiceLogChannel').value || null },
+    messageLog: { enabled: $('messageLog').checked, channelId: $('messageLogChannel').value || null },
     welcome: {
       enabled: $('welcome').checked,
       channelId: $('welcomeChannel').value || null,
